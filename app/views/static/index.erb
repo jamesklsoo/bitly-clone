@@ -1,2 +1,62 @@
-<h1>Hello World</h1>
-<p>See Me in views/static/index.html.erb</p>
+<html>
+	<head>
+		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css" integrity="sha512-dTfge/zgoMYpP7QbHy4gWMEGsbsdZeCXz7irItjcC3sPUFtf0kuFbDz/ixG7ArTxmDjLXDmezHubeNikyKGVyQ==" crossorigin="anonymous">
+		<link rel="stylesheet" type="text/css" href="application.css">
+	</head>
+
+	<body>
+		<container>
+			<div id="intro">
+				<h1>Welcome to month.ly</h1>
+				<p>URL Shortener</p>
+			<div>
+
+			<div id="bar">
+					<form class="form-inline" action="/urls" method = "post">
+						<input id="form-bootstrap-overrides" class="form-control input-lg" type="text" placeholder="Paste your URL here" name="long_url">
+					<button class="btn btn-default btn-lg sharp" type="shorten" value="Submit">SHORTEN</button>
+				</form>
+				<p id="error"><%= @error %></p>
+			</div>
+				
+			
+			<div class="row row-centered">
+			  <div class="col-md-4">
+			  	<span class="glyphicon glyphicon-duplicate iconformat"></span>
+			  	<p2>Copy and paste your link</p2>
+			  </div>
+			  <div class="col-md-4">
+			    <span class="glyphicon glyphicon-hand-up iconformat"></span>
+			  	<p2>Click shorten</p2>
+			  </div>
+			  <div class="col-md-4">
+			 		<span class="glyphicon glyphicon-sunglasses iconformat"></span>
+			  	<p2>Share this month.ly link!</p2>
+			  </div>
+			</div>
+
+			<div class="recent_list">
+
+				<p>Recent shortened URLs here!</p>
+
+					<table class="table table-hover">
+					  <thead>
+					    <tr>
+					      <th>Month.ly</th>
+					      <th>URL</th>
+					      <th>Count</th>
+					    </tr>
+					  </thead>
+					  <tbody>
+					    <% @urls.each do |url|%>
+						    <tr>
+						      <td><a href="http://localhost:9393/<%= url.short_url%>">http://month.ly/<%= url.short_url%></a></td>
+						      <td><%= url.long_url%></td>
+						      <td><%= url.click_count%></td>
+						    </tr>
+					   <%end%>
+					  </tbody>
+					</table>
+		</container>
+	</body>
+</html>
