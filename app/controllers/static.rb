@@ -1,14 +1,16 @@
-get '/'
-@urls = Url.last(5)
-@urls.reverse
-erb :"static/index"
+get '/' do
+  @urls = Url.last(5)
+  @urls.reverse!
+  erb :"static/index"
 end
 
 post '/urls' do
   @url = Url.new(long_url: params[:long_url])
-  if url.save
-    redirect "/"
+  if @url.save
+    redirect to "/"
   else
+    @error = "Invalid URL."
+    @urls = Url.all
     erb :"static/index"
   end
 end
