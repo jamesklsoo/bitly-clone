@@ -9,7 +9,7 @@ post '/urls' do
   if @url.save
     return @url.to_json
   else
-    return @url.errors.full_messages.join('. ')
+    return @url.error
   end
 end
 
@@ -17,6 +17,5 @@ get '/:short_url' do
   @url = Url.find_by(short_url: params[:short_url])
   @url.click_count +=1
   @url.save
-
   redirect "#{@url.long_url}"
 end

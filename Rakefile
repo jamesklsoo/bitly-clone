@@ -14,9 +14,9 @@ namespace :generate do
       raise "Must specificy migration name, e.g., rake generate:spec NAME=test_name"
     end
 
-    name			= ENV['NAME'].camelize
-    filename	= "%s_spec.rb" % ENV['NAME'].underscore
-    path			= APP_ROOT.join('spec', filename)
+    name      = ENV['NAME'].camelize
+    filename  = "%s_spec.rb" % ENV['NAME'].underscore
+    path      = APP_ROOT.join('spec', filename)
 
     if File.exist?(path)
       raise "ERROR: File '#{path}' already exists"
@@ -47,14 +47,14 @@ namespace :generate do
 
     if ENV['NAME'] != ENV['NAME'].singularize
       puts "==================================================================="
-      puts "	WARNING: #{ENV['NAME']} is plural. Auto-correcting to singluar."
+      puts "  WARNING: #{ENV['NAME']} is plural. Auto-correcting to singluar."
       puts "==================================================================="
       ENV['NAME'] = ENV['NAME'].singularize
     end
 
-    model_name			= ENV['NAME'].camelize
-    model_filename	= ENV['NAME'].underscore + '.rb'
-    model_path			= APP_ROOT.join('app', 'models', model_filename)
+    model_name      = ENV['NAME'].camelize
+    model_filename  = ENV['NAME'].underscore + '.rb'
+    model_path      = APP_ROOT.join('app', 'models', model_filename)
 
     if File.exist?(model_path)
       raise "ERROR: Model file '#{model_path}' already exists"
@@ -76,9 +76,9 @@ namespace :generate do
       raise "Must specificy migration name, e.g., rake generate:migration NAME=create_tasks"
     end
 
-    name			= ENV['NAME'].camelize
-    filename	= "%s_%s.rb" % [Time.now.strftime('%Y%m%d%H%M%S'), ENV['NAME'].underscore]
-    path			= APP_ROOT.join('db', 'migrate', filename)
+    name      = ENV['NAME'].camelize
+    filename  = "%s_%s.rb" % [Time.now.strftime('%Y%m%d%H%M%S'), ENV['NAME'].underscore]
+    path      = APP_ROOT.join('db', 'migrate', filename)
 
     if File.exist?(path)
       raise "ERROR: File '#{path}' already exists"
@@ -147,7 +147,6 @@ task "c9-server" do
   exec "shotgun --host $IP --port $PORT config.ru"
 end
 
-
 desc 'Execute unit tests in spec'
 RSpec::Core::RakeTask.new(:test)
 
@@ -160,46 +159,46 @@ app instruction
 Server
 -----------------
 # launch the server
-	$ rake server
+  $ rake server
 # launch the server on Cloud-9
-	$ rake c9-server
+  $ rake c9-server
 
 Test and Debug
 -----------------
 # initiate irb console for this web server
-	$ rake console
+  $ rake console
 
 # performs all unit tests in spec folder.
-	$ rake test
+  $ rake test
 
 # spec - to create unit test 'spec/<filename>_spec.rb' file
-	$ rake generate:spec NAME=<filename>
+  $ rake generate:spec NAME=<filename>
 
 MVC
 -----------------
 # to create a model file
-	$ rake generate:model NAME=<singular_model_name>
+  $ rake generate:model NAME=<singular_model_name>
 
 
 Database
 -----------------
 # to create the database
-	$ rake db:create
+  $ rake db:create
 
 # to create migration file 'db/migrate/<timestamp>_<filename>.rb'
-	$ rake generate:migration NAME=<filename>
+  $ rake generate:migration NAME=<filename>
 # REMINDER: be careful with ActiveRecord naming convention!
 
 # to perform migration
-	$ rake db:migrate
+  $ rake db:migrate
 
 # to drop database
-	$ rake db:drop
+  $ rake db:drop
 
 # to seed data into database
-	$ rake db:seed
+  $ rake db:seed
 
 # to view current migration version
-	$ rake db:version
+  $ rake db:version
 "
 end

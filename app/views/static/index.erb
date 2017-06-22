@@ -41,7 +41,7 @@
 					  <tbody>
 					    <% @urls.each do |url|%>
 						    <tr>
-						      <td><a href="<%= url.short_url%>"><%= url.short_url%></a></td>
+						      <td><a href="<%= url.short_url%>" target="_blank"><%= url.short_url%></a></td>
 						      <td><%= url.long_url%></td>
 						      <td><%= url.click_count%></td>
 						    </tr>

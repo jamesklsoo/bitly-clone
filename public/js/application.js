@@ -19,10 +19,20 @@ $(document).ready(function() {
         result = JSON.parse(data)
         console.log(result.short_url)        
         console.log(result.long_url)
-        $('tr:first-child').after('<tr><td>' + result.short_url + '</td><td>' + 'http://localhost:9393/' + result.long_url + '</td><td>0</td><tr>')
-      }
+        $('tr:first-child').after('<tr><td><a href="/' +result.short_url + '" target="_blank">' + result.short_url + '</a></td><td>' + result.long_url + '</td><td>0</td><tr>')
+      },
+
+      error: function() {
+        alert("Incomplete URL. Try again.");
+      },
     })
+  }),
+  $('tbody tr td a').on('click', function(nom){
+    // kira is the click count td next to the clicked link
+    kira = $(nom.target).parent().next().next()
+    // current click count + 1
+    num = parseInt(kira.text()) + 1 
+    // update click count value
+    kira.text(num)
   })
 })
-
-
