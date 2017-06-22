@@ -7,11 +7,9 @@ end
 post '/urls' do
   @url = Url.new(long_url: params[:long_url])
   if @url.save
-    redirect to "/"
+    return @url.to_json
   else
-    @error = "Invalid URL."
-    @urls = Url.all
-    erb :"static/index"
+    return @url.errors.full_messages.join('. ')
   end
 end
 
